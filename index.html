@@ -9,46 +9,74 @@
         Fatima Mahmoud (fam76) Ayesha Kemal (ak2235) Zoe Gonzalez-Llorens (zg226)
     </h3>
     <p id="2019graph">
+        <!-- <svg id="graph_svg" height="500" width="800"></svg> -->
         <script>
-            d3.json("2019.json").then((data) => {
+            d3.json("2019_state.json").then((data) => {
 
                 console.log(data)
 
 
                 //Clean Data 
 
-                // create variables for state, government function, and march total payroll columns
 
+                //change payroll column from strings to numbers
+                data.forEach((d, i) => {
+                    d["Total March Payroll (whole dollars)"] = Number(d["Total March Payroll (whole dollars)"].replace(/,/g, ""));
 
-                //change state column from abbrevations to full name
+                });
 
+                //take out general united states data and payrolls that == 0
+                data = data.filter((d) => { return d['State'] != "United States" && d["Total March Payroll (whole dollars)"] != 0; })
 
-                //change total payroll column to number from string
+                console.log(data)
 
-                //     data.forEach((d, i) => {
-                //     d[''] = Number(d['']);
-
-                // });
+                //svg
+                // const svg = d3.select("#graph_svg");
+                // const width = svg.attr("width");
+                // const height = svg.attr("height");
 
 
                 //create map projection
 
-                //var projection = d3.geoAlbersUsa()
 
 
+                // var projection = d3.geoAlbersUsa()
+                //     .translate([width / 2, height / 2])
+                //     .scale([1000]);
+
+
+                // Define path generator
+                // var mapPath = d3.geoPath()
+                //     .projection(projection);
 
 
                 //create svg with width and height and append map to it
 
-                // const svg = d3.select("#2019graph")
-                //     .append("svg")
-                //     .attr("width", )
-                //     .attr("height", );
+
 
 
                 //create function to find percentages/find highest government function in each state?
 
+                // function findHighest (s){
+                //     highest=0
+                //     govt_category=""
+                //     for (every state where state==s){
+                //         current= data["total payroll"]
+                //         if (current>highest){
+                //             govt_category=data["government function"];
+                //             highest=current;
+                //         }
+                //     }
+                //     return govt_category
+                // }
 
+
+                //Create scales
+
+                //const statesScale = d3.scaleOrdinal();
+
+
+                //
 
 
 
